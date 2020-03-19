@@ -35,7 +35,17 @@ class Virus(commands.Bot):
 
         # Load bot modules
         self.load_cogs()
+        # Load commands that are in their own separate files.
+        self.load_commands()
     
+    def load_commands(self):
+        commands = ['commands.oss']
+        for command in commands:
+            try:
+                self.load_extension(command)
+            except Exception as ex:
+                self.logging.warn(f"Couldn't load the extension {extension}! Reason:\n{ex}")
+
     def load_cogs(self):
         extensions = ['cogs.gaybidemi']
         for extension in extensions:
